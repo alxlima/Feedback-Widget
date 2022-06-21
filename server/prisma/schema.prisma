@@ -1,0 +1,23 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+//criando tabelas através de sintaxes do prisma
+model Feedback {
+  //id Int @id @default(autoincrement()) //[@id]-PK da tabela - modelo padrão numerico
+  id String @id @default(uuid()) //[@id]-PK da tabela - modelo [uuid] - id unico numero e text.
+  
+  type       String
+  comment    String
+  screenshot String? //[?]- aceita null
+
+  @@map("feedbacks")
+}
